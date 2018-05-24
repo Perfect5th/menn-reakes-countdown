@@ -2,16 +2,30 @@
 'use strict';
 
 const DOOMSDAY = new Date(Date.UTC(2018, 8, 2));
+const LAST_WORDS = 'Mitch is gone';
 
 document.addEventListener('DOMContentLoaded', () => {
   let clock = document.getElementById('doomsdayClock');
 
   updateClock(clock, DOOMSDAY, () => {
-    setInterval(() => updateClock(clock, DOOMSDAY), 500);
+    let clockTick = setInterval(() => {
+      let updated = updateClock(clock, DOOMSDAY);
+
+      if (!updated) {
+        clearInterval(clockTick);
+      }
+    }, 500);
   });
 });
 
 function updateClock(clock, endtime, callback) {
+  let now = new Date();
+
+  if (now > DOOMSDAY) {
+    displayLastWords();
+    return false;
+  }
+
   let totalSeconds = (endtime - new Date()) / 1000;
 
   let clockParts = [
@@ -40,6 +54,8 @@ function updateClock(clock, endtime, callback) {
 
   if (typeof callback !== 'undefined')
     callback();
+  else
+    return true;
 }
 
 function updatePlurals(clockParts) {
@@ -58,4 +74,12 @@ function updatePlurals(clockParts) {
     }
   });
 
+}
+
+function displayLastWords() {
+  let elem = document.getElementById('lastWords');
+  let clock = document.getElementById('doomsdayClock');
+
+  clock.style.display = 'none';
+  elem.textContent = LAST_WORDS;
 }

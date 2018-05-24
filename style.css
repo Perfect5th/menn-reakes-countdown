@@ -11,7 +11,7 @@ html {
     font-size: 16px;
 }
 
-#doomsdayClock {
+#doomsdayClock, #lastWords {
     font-variant: small-caps;
     font-weight: 900;
     font-size: 4em;
