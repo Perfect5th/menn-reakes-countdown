@@ -1,8 +1,8 @@
 
 'use strict';
 
-const DOOMSDAY = new Date(Date.UTC(2018, 8, 1));
-const LAST_WORDS = 'Mitch has left the building';
+const DOOMSDAY = new Date(Date.UTC(2018, 7, 18, 18));
+const LAST_WORDS = 'Melinda and Patrick are married!';
 
 document.addEventListener('DOMContentLoaded', () => {
   let clock = document.getElementById('doomsdayClock');
